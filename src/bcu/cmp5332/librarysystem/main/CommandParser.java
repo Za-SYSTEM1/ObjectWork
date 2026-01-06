@@ -1,8 +1,12 @@
 package bcu.cmp5332.librarysystem.main;
 
 import bcu.cmp5332.librarysystem.commands.LoadGUI;
+import bcu.cmp5332.librarysystem.commands.ShowBook;
+import bcu.cmp5332.librarysystem.commands.ShowPatron;
 import bcu.cmp5332.librarysystem.commands.ListBooks;
+import bcu.cmp5332.librarysystem.commands.ListPatron;
 import bcu.cmp5332.librarysystem.commands.AddBook;
+import bcu.cmp5332.librarysystem.commands.AddPatron;
 import bcu.cmp5332.librarysystem.commands.Command;
 import bcu.cmp5332.librarysystem.commands.Help;
 import java.io.BufferedReader;
@@ -18,6 +22,41 @@ public class CommandParser {
             String cmd = parts[0];
 
             // TODO: Link your implemented features to commands here 
+            if (cmd.equals("addbook")) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.print("Title: ");
+                String title = br.readLine();
+                System.out.print("Author: ");
+                String author = br.readLine();
+                System.out.print("Publication Year: ");
+                String publicationYear = br.readLine();
+               return new AddBook(title, author, publicationYear);
+            } else if (cmd.equals("addpatron")) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.print("Name: ");
+                String name = br.readLine();
+                System.out.print("Email: ");
+                String email = br.readLine();
+                
+                return new AddPatron(name, email);
+            } else if (cmd.equals("loadgui")) {
+                return new LoadGUI();
+            } else if (parts.length == 1) {
+                if (line.equals("listbooks")) {
+                    return new ListBooks();
+                } else if (line.equals("listpatrons")) {
+                    return new ListPatron();
+                } else if (line.equals("help")) {
+                    return new Help();
+                }
+            } else if (parts.length == 2) {
+                int id = Integer.parseInt(parts[1]);
+
+                if (cmd.equals("showbook")) {
+                    return new ShowBook(id);
+                } else if (cmd.equals("showpatron")) {
+                    return new ShowPatron(id);
+                }
             if (cmd.equals("addbook")) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 System.out.print("Title: ");
@@ -60,10 +99,10 @@ public class CommandParser {
                     
                 }
             }
-        } catch (NumberFormatException ex) {
+        }catch (NumberFormatException ex) {
 
         }
 
         throw new LibraryException("Invalid command.");
     }
-}
+
