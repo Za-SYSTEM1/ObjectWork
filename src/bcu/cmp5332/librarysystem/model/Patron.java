@@ -11,12 +11,14 @@ public class Patron {
     private int id;
     private String name;
     private String phone;
+    private String email;
     private final List<Book> books = new ArrayList<>();
 
-    public Patron(int id, String name, String phone) throws LibraryException {
+    public Patron(int id, String name, String phone, String email) throws LibraryException {
         this.id = id;
         this.name = name;
         this.phone = phone;
+        this.email = email;
     }
 
     public int getId() {
@@ -29,6 +31,10 @@ public class Patron {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public List<Book> getBooks() {

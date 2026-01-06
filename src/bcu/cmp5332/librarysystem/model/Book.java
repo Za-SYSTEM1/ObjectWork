@@ -9,6 +9,7 @@ public class Book {
     private String title;
     private String author;
     private String publicationYear;
+    private String publisher;
 
     private Loan loan;
 
@@ -17,6 +18,11 @@ public class Book {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
+        this.publisher = publisher;
+    }
+
+    public Book(int i, String title2, String author2, String publicationYear2, String publisher2) {
+        //TODO Auto-generated constructor stub
     }
 
     public int getId() {
@@ -38,6 +44,10 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
+    public String getPublisher(){
+        return publisher;
+    }
     
     public void setAuthor(String author) {
         this.author = author;
@@ -56,11 +66,12 @@ public class Book {
     }
 
     public String getDetailsLong() {
-    	return "Book #" + id +
-    	           "\nTitle: " + title +
-    	           "\nAuthor: " + author +
-    	           "\nPublication Year: " + publicationYear +
-    	          "\nStatus: " + getStatus();
+         return "Book #" + id +
+                   "\nTitle: " + title +
+                   "\nAuthor: " + author +
+                   "\nPublication Year: " + publicationYear +
+                   "\nPublisher: " + publisher +
+               "\nStatus: " + (isOnLoan() ? "On Loan" : "Available");
         // TODO: implementation here
     }
     
